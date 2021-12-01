@@ -16,19 +16,23 @@
   <meta name="description" content="">
   <meta name="author" content="有梦想的鲨鱼">
   <meta name="keywords" content="">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="1.AWS CDN切图介绍：在移动互联网的快速发展、移动终端设备爆发式增长的当下，各种社交类APP 和电商平台为了提升访问速度与良好的用户体验，通常会根据客户端的不同性能、不同屏幕尺寸和分辨率提供适当尺寸的图片。开发者通常需要预先提供非常多种不同分辨率的图片组合，这样往往会增加管理难度和提高运营成本。 Lambda@edge的四个阶段： 查看器请求阶段： 当 CloudFront 收到查看器的请求">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/11/29/hello-world/index.html">
+<meta property="og:title" content="Small Shark">
+<meta property="og:url" content="http://example.com/2021/12/01/cdn_resize/index.html">
 <meta property="og:site_name" content="Small Shark">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1.AWS CDN切图介绍：在移动互联网的快速发展、移动终端设备爆发式增长的当下，各种社交类APP 和电商平台为了提升访问速度与良好的用户体验，通常会根据客户端的不同性能、不同屏幕尺寸和分辨率提供适当尺寸的图片。开发者通常需要预先提供非常多种不同分辨率的图片组合，这样往往会增加管理难度和提高运营成本。 Lambda@edge的四个阶段： 查看器请求阶段： 当 CloudFront 收到查看器的请求">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-29T07:08:38.908Z">
-<meta property="article:modified_time" content="2021-11-29T07:08:38.908Z">
+<meta property="og:image" content="http://example.com/images/Schematicdiagram.png">
+<meta property="og:image" content="http://example.com/images/Situationone.png">
+<meta property="og:image" content="http://example.com/images/Situationtwo.png">
+<meta property="article:published_time" content="2021-12-01T02:30:16.502Z">
+<meta property="article:modified_time" content="2021-12-01T02:30:16.502Z">
 <meta property="article:author" content="有梦想的鲨鱼">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/Schematicdiagram.png">
   
-  <title>Hello World - Small Shark</title>
+  <title>Small Shark</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -174,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -184,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-11-29 07:08" pubdate>
-        2021年11月29日 早上
+      <time datetime="2021-12-01 02:30" pubdate>
+        2021年12月1日 凌晨
       </time>
     </span>
   
@@ -195,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1k 字
     </span>
   
 
@@ -204,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      3 分钟
     </span>
   
 
@@ -233,23 +237,50 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+              <h1 id="1-AWS-CDN切图"><a href="#1-AWS-CDN切图" class="headerlink" title="1.AWS CDN切图"></a>1.AWS CDN切图</h1><h2 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h2><p><em>在移动互联网的快速发展、移动终端设备爆发式增长的当下，各种社交类APP 和电商平台为了提升访问速度与良好的用户体验，通常会根据客户端的不同性能、不同屏幕尺寸和分辨率提供适当尺寸的图片。开发者通常需要预先提供非常多种不同分辨率的图片组合，这样往往会增加管理难度和提高运营成本。</em></p>
+<h2 id="Lambda-edge的四个阶段："><a href="#Lambda-edge的四个阶段：" class="headerlink" title="Lambda@edge的四个阶段："></a>Lambda@edge的四个阶段：</h2><p><img src="/images/Schematicdiagram.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="查看器请求阶段："><a href="#查看器请求阶段：" class="headerlink" title="查看器请求阶段："></a>查看器请求阶段：</h3><ul>
+<li>当 CloudFront 收到查看器的请求，但还未检查请求的对象是否在边缘缓存中时，该函数会执行。</li>
+</ul>
+<h3 id="查看器响应阶段："><a href="#查看器响应阶段：" class="headerlink" title="查看器响应阶段："></a>查看器响应阶段：</h3><p>在将请求的文件返回到查看器之前，该函数会执行。</p>
+<p>请注意，无论文件是否已在边缘缓存中，该函数都会执行。</p>
+<p>但在以下情况下该函数不会执行：</p>
+<p>当源返回 400 或更高的 HTTP 状态代码时</p>
+<p>当返回自定义错误页面时</p>
+<p>当从由查看器请求事件触发的函数中生成响应时</p>
+<p>在 CloudFront 将 HTTP 请求自动重定向到 HTTPS 时(在查看器协议策略 的值为将 HTTP 重定向到 HTTPS 时)</p>
+<h3 id="源请求阶段："><a href="#源请求阶段：" class="headerlink" title="源请求阶段："></a>源请求阶段：</h3><ul>
+<li>只有在 CloudFront 将请求转发到源时，才会执行该函数。当请求的对象在边缘缓存中时，该函数不会执行。</li>
+</ul>
+<h3 id="源响应阶段："><a href="#源响应阶段：" class="headerlink" title="源响应阶段："></a>源响应阶段：</h3><ul>
+<li><p>在 CloudFront 收到来自源的响应之后及它将对象缓存在响应中之前，该函数会执行。请注意，即使从源返回了错误，该函数仍会执行。</p>
+<p>但在以下情况下该函数不会执行：</p>
+<ul>
+<li>当请求的文件在边缘缓存中时</li>
+<li>当从由源请求事件触发的函数中生成响应时</li>
+</ul>
+</li>
+</ul>
+<h1 id="两种情况"><a href="#两种情况" class="headerlink" title="两种情况"></a>两种情况</h1><p>一种是直接将参数命名在文件中，一种是通过查询参数来发起请求</p>
+<h2 id="文件名为100x100-png："><a href="#文件名为100x100-png：" class="headerlink" title="文件名为100x100.png："></a>文件名为100x100.png：</h2><p>工作流程：<br>1.客户端发起请求100x100.png像素的图片</p>
+<p>2.在源请求中设置了Lambda@edge，此时会判断源站是否有相对应的图片</p>
+<p>3.如果有则直接返回request，如果没有则进入以下流程</p>
+<p>​    3.1 lambda会从源站将图片下载下来</p>
+<p>​    3.2 lambda中的切图组建会将图片裁剪成指定大小。</p>
+<p>​    3.3 lambda会将图片下载到源站中，并且返回request</p>
+<p><img src="/images/Situationone.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="带有查询参数："><a href="#带有查询参数：" class="headerlink" title="带有查询参数："></a>带有查询参数：</h2><p>工作流程：<br>1.客户端发起请求1.png像素的图片</p>
+<p>2.在源请求中设置了Lambda@edge，此时会判断是否带有querystring</p>
+<p>3.如果有则进入以下流程：</p>
+<p>​    3.1 lambda会从源站将图片下载下来</p>
+<p>​    3.2 lambda中的切图组建会将图片裁剪成指定大小。</p>
+<p>​    3.3 lambda会将图片下载到源站的另外一个对象或者另外一个源站中(存储格式为100x100.png或者其他格式)，并且修改源和路径或者修改源路径并且返回request</p>
+<p>4.如果没有则直接返回request</p>
+<p><img src="/images/Situationtwo.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
             </div>
             <hr>
             <div>
@@ -269,15 +300,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/30/myfirst_blog/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">yi pian blog</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/11/30/myfirst_blog/">
+                        <span class="hidden-mobile">yi pian blog</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
