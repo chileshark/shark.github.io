@@ -22,7 +22,7 @@
 
   
 
-  <title>links | Small Shark</title>
+  <title>Modify Content-Type | Small Shark</title>
 
   
 
@@ -43,7 +43,7 @@
   <div class="root-container">
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
   
     <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
   
@@ -91,80 +91,102 @@
 
   
   
-
-  
-  
     <div class="header-content">
-      <div class="post-text layout-block layout-padding">
-        <h1 class="title-wrap">links</h1>
-        
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Modify Content-Type</h1>
+          <h2 class="title-sub-wrap">
+            <strong>有梦想的鲨鱼</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-12-06T07:40:11.946Z" itemprop="datePublished">2021-12-06</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/CDN/">🏷️ CDN</a></li>
+  
+</ul>
+        </div>
       </div>
     </div>
+  
+
+  
   
   
 </header>
 
-    <!-- 分页(其他自定义页面) -->
+    <!-- 文章 -->
 
-<!-- 自定义页面 -->
-
+<!-- 文章内容 -->
 <div class="body-container">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       
+      
+      
+      
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        
+        <h1 id="CDN-Lambda-edge修改Content-Type"><a href="#CDN-Lambda-edge修改Content-Type" class="headerlink" title="CDN Lambda@edge修改Content-Type"></a>CDN Lambda@edge修改Content-Type</h1><h2 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h2><p>场景：因客户源站错误的配置，导致用户访问url <a target="_blank" rel="noopener" href="https://aaaa.cdasd.com/ssss.html%E7%9A%84%E6%97%B6%E5%80%99%E8%BF%94%E5%9B%9E%E7%9A%84Content-Type%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF%E3%80%82%E7%8E%B0%E5%9C%A8%E6%83%B3%E4%B8%B4%E6%97%B6%E4%BF%AE%E6%AD%A3%E3%80%82">https://aaaa.cdasd.com/ssss.html的时候返回的Content-Type类型错误。现在想临时修正。</a></p>
+<h3 id="lambda-edge使用位置"><a href="#lambda-edge使用位置" class="headerlink" title="lambda@edge使用位置"></a>lambda@edge使用位置</h3><p> 首先这个要在源请求阶段，因为Lambda@edge是按调用次数收费的，如果在查看器响应阶段的话，那么费用会高很多。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lambda_handler</span>(<span class="params">event, context</span>):</span>    </span><br><span class="line"><span class="comment"># TODO implement        </span></span><br><span class="line">  response = event[<span class="string">&#x27;Records&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;cf&#x27;</span>][<span class="string">&#x27;response&#x27;</span>]    </span><br><span class="line">  headers = response[<span class="string">&#x27;headers&#x27;</span>]    </span><br><span class="line">  modify_content=<span class="string">&quot;Content-Type&quot;</span>    </span><br><span class="line">  content_value=<span class="string">&quot;text/xml&quot;</span></span><br><span class="line"><span class="comment"># 将head里的content-type替换成Content-Type:text/html    headers[&#x27;content-type&#x27;][0][&#x27;value&#x27;]=content_value    return response</span></span><br></pre></td></tr></table></figure>
+
+<p>代码为了测试成果，已将html换成了xml</p>
+<p>官方网站上有每个阶段的事件返回的样例，可以自己查看</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html">https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/lambda-event-structure.html</a></p>
+
       </section>
 
       
       
-        <section class="page-link-container">
+        <nav class="article-nav">
           
-            <div class="link-item layout-padding">
-              <a href="https://simplestark.com" title="烟霞志" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">烟霞志</h4>
-                  
-                </div>
-              </a>
-            </div>
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/12/06/s3_allow_source/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">S3 allow source</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
-            <div class="link-item layout-padding">
-              <a href="https://www.tobetester.top/" title="快要被裁员的辣鸡测试" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">快要被裁员的辣鸡测试</h4>
-                  
-                </div>
-              </a>
-            </div>
           
-            <div class="link-item layout-padding">
-              <a href="https://www.assistest.cn" title="木木" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">木木</h4>
-                  
-                </div>
-              </a>
-            </div>
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/12/03/ebs_eip_tag/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Auto_create_ebs_eip_tag</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
-            <div class="link-item layout-padding">
-              <a href="https://tblog.pages.dev/" title="T计划" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">T计划</h4>
-                  
-                </div>
-              </a>
-            </div>
-          
-        </section>
+        </nav>
       
 
-      
-      
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
     </div>
     <div class="widget-info">
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -201,6 +223,8 @@
     </div>
   </div>
 </section>
+
+      
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -246,7 +270,6 @@
     </div>
   </article>
 </div>
-
 
     <!-- footer container -->
 <footer id="footer" class="footer">

@@ -22,7 +22,7 @@
 
   
 
-  <title>links | Small Shark</title>
+  <title>Site to Site | Small Shark</title>
 
   
 
@@ -43,7 +43,7 @@
   <div class="root-container">
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
   
     <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
   
@@ -91,80 +91,95 @@
 
   
   
-
-  
-  
     <div class="header-content">
-      <div class="post-text layout-block layout-padding">
-        <h1 class="title-wrap">links</h1>
-        
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Site to Site</h1>
+          <h2 class="title-sub-wrap">
+            <strong>有梦想的鲨鱼</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-12-27T06:18:20.793Z" itemprop="datePublished">2021-12-27</time>
+          </h2>
+          <ul class="wrap-list dark">
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/VPN/">🏷️ VPN</a></li>
+  
+</ul>
+        </div>
       </div>
     </div>
+  
+
+  
   
   
 </header>
 
-    <!-- 分页(其他自定义页面) -->
+    <!-- 文章 -->
 
-<!-- 自定义页面 -->
-
+<!-- 文章内容 -->
 <div class="body-container">
   <article class="content-container layout-block post-container">
     <div class="article-info">
       
+      
+      
+      
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        
+        <h1 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h1><p>如果需要从本地连接到AWS VPC，除了专线之外还可以使用VPN</p>
+<p><img src="/images/vpn/jiagou.png" alt="架构"></p>
+<h1 id="创建客户网关"><a href="#创建客户网关" class="headerlink" title="创建客户网关"></a>创建客户网关</h1><p>这个网关既是运营商分配给企业的一个出口IP地址<br>在此我使用18.179.223.38作为出口IP<br>导航到我们的AWS VPC Console上，在左侧选项栏找到客户网关(Custom Gateway)并点击创建客户网关</p>
+<p><img src="/images/vpn/cgw.png" alt="创建客户网关"></p>
+<h1 id="创建虚拟专用网关"><a href="#创建虚拟专用网关" class="headerlink" title="创建虚拟专用网关"></a>创建虚拟专用网关</h1><p><img src="/images/vpn/vgw.png" alt="创建虚拟专用网关"></p>
+<p>需要将其附加到VPC上</p>
+<p><img src="/images/vpn/vgwattachvpc.png" alt="附加到VPC"></p>
+<h1 id="创建VPN连接"><a href="#创建VPN连接" class="headerlink" title="创建VPN连接"></a>创建VPN连接</h1><p><img src="/images/vpn/createvpnconnect.png" alt="创建VPN连接"></p>
+<h2 id="查看隧道信息"><a href="#查看隧道信息" class="headerlink" title="查看隧道信息"></a>查看隧道信息</h2><p><img src="/images/vpn/checkvpn.png" alt="查看隧道信息"></p>
+<h2 id="在VPC上添加路由"><a href="#在VPC上添加路由" class="headerlink" title="在VPC上添加路由"></a>在VPC上添加路由</h2><p><img src="/images/vpn/attachroute.png" alt="添加路由"></p>
+<h1 id="配置VPN客户端"><a href="#配置VPN客户端" class="headerlink" title="配置VPN客户端"></a>配置VPN客户端</h1><h2 id="安装libreswan"><a href="#安装libreswan" class="headerlink" title="安装libreswan"></a>安装libreswan</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">我们在企业VPC上创建一台ec2后，进行安装libreswan</span><br><span class="line">sudo yum install libreswan -y</span><br><span class="line">配置文件</span><br><span class="line">vim /etc/ipsec.d/myconnection.conf</span><br><span class="line">conn myconnection</span><br><span class="line">    left=%defaultroute</span><br><span class="line">    leftsubnet=172.20.0.0/16    #企业端的ip地址段</span><br><span class="line">    right=13.115.203.84    # 这是隧道的外部IP地址</span><br><span class="line">    rightsubnet=192.168.0.0/16    # AWS上的IP地址段</span><br><span class="line">    authby=secret</span><br><span class="line">    auto=start</span><br><span class="line">    ikev2=no        # 这里需要看下载配置文件时，是否有选择Ikev2</span><br><span class="line"></span><br><span class="line">为了为我们的连接创建秘密，我们需要来自 VPN 配置的一份数据。</span><br><span class="line">您还记得我们在 AWS 中创建 VPN 连接时下载了此配置。</span><br><span class="line">下载文件的开头应该与此类似：</span><br><span class="line">  - IKE version              : IKEv1</span><br><span class="line">  - Authentication Method    : Pre-Shared Key</span><br><span class="line">  - Pre-Shared Key           : MtIHIt6gum36zrZVOefRzQaVITHi3OqY</span><br><span class="line">  - Authentication Algorithm : sha1</span><br><span class="line">  - Encryption Algorithm     : aes-128-cbc</span><br><span class="line">  - Lifetime                 : 28800 seconds</span><br><span class="line">  - Phase 1 Negotiation Mode : main</span><br><span class="line">  - Diffie-Hellman           : Group 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">vim /etc/ipsec.d/myconnection.secrets</span><br><span class="line">18.180.200.92 0.0.0.0 %any: PSK &quot;OsF8sy2SOxbGMTL5Wj.O1EKk_nFR5ptK&quot;</span><br><span class="line">如果您有防火墙或其他配置，则需要确保它允许 IKE 数据报和受 IPSec 保护的数据。您设置的方式在很大程度上取决于您使用的设备和/或软件</span><br><span class="line"></span><br><span class="line">接下来我们需要修改linux内核参数</span><br><span class="line">vim /etc/sysctl.conf</span><br><span class="line">net.ipv4.conf.default.rp_filter = 0</span><br><span class="line">net.ipv4.conf.all.rp_filter = 0</span><br><span class="line">net.ipv4.conf.eth0.rp_filter = 0</span><br><span class="line">net.ipv4.conf.lo.rp_filter = 0</span><br><span class="line">net.ipv4.conf.eth0.send_redirects= 0</span><br><span class="line">net.ipv4.conf.lo.send_redirects= 0</span><br><span class="line">net.ipv4.conf.ip_vti0.rp_filter =0</span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.ipv4.conf.default.send_redirects=0</span><br><span class="line">net.ipv4.conf.default.accept_redirects=0</span><br><span class="line">sysctl -p</span><br><span class="line"></span><br><span class="line">然后测试连接，我们可以使用先通过命令验证libreswan的配置文件，和其他网络设置</span><br><span class="line">ipsec verify</span><br><span class="line">Verifying installed system and configuration files</span><br><span class="line"></span><br><span class="line">Version check and ipsec on-path                         [OK]</span><br><span class="line">Libreswan 3.25 (netkey) on 5.10.75-79.358.amzn2.x86_64</span><br><span class="line">Checking for IPsec support in kernel                    [OK]</span><br><span class="line"> NETKEY: Testing XFRM related proc values</span><br><span class="line">         ICMP default/send_redirects                    [OK]</span><br><span class="line">         ICMP default/accept_redirects                  [OK]</span><br><span class="line">         XFRM larval drop                               [OK]</span><br><span class="line">Pluto ipsec.conf syntax                                 [OK]</span><br><span class="line">Two or more interfaces found, checking IP forwarding    [OK]</span><br><span class="line">Checking rp_filter                                      [OK]</span><br><span class="line">Checking that pluto is running                          [OK]</span><br><span class="line"> Pluto listening for IKE on udp 500                     [OK]</span><br><span class="line"> Pluto listening for IKE/NAT-T on udp 4500              [OK]</span><br><span class="line"> Pluto ipsec.secret syntax                              [OK]</span><br><span class="line">Checking &#x27;ip&#x27; command                                   [OK]</span><br><span class="line">Checking &#x27;iptables&#x27; command                             [OK]</span><br><span class="line">Checking &#x27;prelink&#x27; command does not interfere with FIPS [OK]</span><br><span class="line">Checking for obsolete ipsec.conf options                [OK]</span><br><span class="line"></span><br><span class="line">如果以上的范围结果都是OK，则我们可以启动libreswan了</span><br><span class="line">systemctl enable --now ipsec</span><br><span class="line"></span><br><span class="line">sudo ipsec auto --add myconnection</span><br><span class="line"></span><br><span class="line">sudo systemctl restart ipsec</span><br><span class="line"></span><br><span class="line">ipsec status 如果Total IPsec connections: loaded 1, active 1，说明VPN已经联通了</span><br><span class="line"></span><br><span class="line">配置路由(如果创建VPN连接时没有指定本地的地址段和AWS侧的地址段)：</span><br><span class="line">route add -net 192.168.0.0 netmask 255.255.0.0 dev eth0</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="在AWS上开放安全组"><a href="#在AWS上开放安全组" class="headerlink" title="在AWS上开放安全组"></a>在AWS上开放安全组</h1><p><img src="/images/vpn/attachsg.png" alt="开放安全组"></p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p><img src="/images/vpn/ping.png" alt="测试"></p>
+
       </section>
 
       
       
-        <section class="page-link-container">
+        <nav class="article-nav">
           
-            <div class="link-item layout-padding">
-              <a href="https://simplestark.com" title="烟霞志" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">烟霞志</h4>
-                  
-                </div>
-              </a>
-            </div>
           
-            <div class="link-item layout-padding">
-              <a href="https://www.tobetester.top/" title="快要被裁员的辣鸡测试" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">快要被裁员的辣鸡测试</h4>
-                  
-                </div>
-              </a>
-            </div>
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2021/12/06/s3_allow_source/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">S3 allow source</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
-            <div class="link-item layout-padding">
-              <a href="https://www.assistest.cn" title="木木" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">木木</h4>
-                  
-                </div>
-              </a>
-            </div>
-          
-            <div class="link-item layout-padding">
-              <a href="https://tblog.pages.dev/" title="T计划" class="content-padding--primary soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
-                
-                <div>
-                  <h4 class="text-ellipsis">T计划</h4>
-                  
-                </div>
-              </a>
-            </div>
-          
-        </section>
+        </nav>
       
 
-      
-      
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
     </div>
     <div class="widget-info">
       <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -201,6 +216,8 @@
     </div>
   </div>
 </section>
+
+      
 
       
 <section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
@@ -246,7 +263,6 @@
     </div>
   </article>
 </div>
-
 
     <!-- footer container -->
 <footer id="footer" class="footer">
