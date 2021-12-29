@@ -22,7 +22,7 @@
 
   
 
-  <title>S3 allow source | Small Shark</title>
+  <title>Small Shark</title>
 
   
 
@@ -94,18 +94,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">S3 allow source</h1>
+          <h1 class="title-wrap"></h1>
           <h2 class="title-sub-wrap">
             <strong>有梦想的鲨鱼</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-12-06T08:19:39.560Z" itemprop="datePublished">2021-12-06</time>
+            <time  class="article-date" datetime="2021-12-29T02:01:50.689Z" itemprop="datePublished">2021-12-29</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
-  
-    <li><a href="/tags/s3/">🏷️ s3</a></li>
   
 </ul>
         </div>
@@ -129,18 +127,25 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="S3允许来源访问"><a href="#S3允许来源访问" class="headerlink" title="S3允许来源访问"></a>S3允许来源访问</h1><p>如果将限制终端节点的策略和限制公有ip的策略写在一起，并且这个公有ip是属于这个vpc内的，那么就会出现一个二者都不可以访问的现象，如果需要的话，只能允许指定的公有ip来进行访问，而不要加入限制终端节点的操作</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+    <figure class="figure-image">
+      <img src="https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg" alt="带描述带图片" loading="lazy" />
+      <figcaption>带描述带图片</figcaption>
+    </figure>
+  
 
-<p>如果只希望连接了终端节点的实例访问和外部主机访问，那么您就可以使用以下策略</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;VPCe&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:ListBucket&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">  <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">  <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;StringNotEquals&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;aws:SourceVpce&quot;</span>: <span class="string">&quot;endpoint&quot;</span></span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>如果想让连接了终端节点的实例访问s3并且不属于这个vpc的外部主机也可以访问，可以使用以下策略</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">    				&#125;,</span><br><span class="line">  	<span class="attr">&quot;StringNotEquals&quot;</span>: &#123;</span><br><span class="line">  	<span class="attr">&quot;aws:SourceVpce&quot;</span>: <span class="string">&quot;endpoint&quot;</span></span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>如果只想让连接了终端节点的实例访问，那么就只能指定公有ip</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       </section>
 
@@ -151,9 +156,11 @@
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
+      <div class="card-cover" background-image-lazy data-img="/images/images/vpn/vpn.jpg"></div>
+    
     <div class="card-text">
       
-        <a href="/2021/12/27/AWS_Site-to-Site/" itemprop="url">
+        <a href="/2021/12/29/AWS_Site-to-Site/" itemprop="url">
           <h2 class="card-text--title text-ellipsis">Site to Site</h2>
         </a>
       
@@ -162,20 +169,6 @@
   </article>
 </div>
           
-          
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2021/12/06/Modify-Content-Type/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Modify Content-Type</h2>
-        </a>
-      
-      <div class="card-text--row">Older</div>
-    </div>
-  </article>
-</div>
           
         </nav>
       
