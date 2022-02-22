@@ -22,7 +22,7 @@
 
   
 
-  <title>Small Shark</title>
+  <title>create_tag_SomeResource | Small Shark</title>
 
   
 
@@ -45,7 +45,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+    <div class="post-image" style="background-image: url(/images/images/ec2/ebs.jpg)"></div>
   
 
   <!-- navbar -->
@@ -94,16 +94,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap"></h1>
+          <h1 class="title-wrap">create_tag_SomeResource</h1>
           <h2 class="title-sub-wrap">
             <strong>有梦想的鲨鱼</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-02-22T05:50:15.732Z" itemprop="datePublished">2022-02-22</time>
+            <time  class="article-date" datetime="2022-02-22T06:16:17.672Z" itemprop="datePublished">2022-02-22</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Tag/">🏷️ Tag</a></li>
   
 </ul>
         </div>
@@ -127,12 +129,7 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>-–</p>
-<p>title: create_tag_SomeResource</p>
-<p>cover: /images/images/ec2/ebs.jpg</p>
-<p>tag: Tag</p>
-<p>-–</p>
-<h1 id="给所有资源打上指定的Tag"><a href="#给所有资源打上指定的Tag" class="headerlink" title="给所有资源打上指定的Tag"></a>给所有资源打上指定的Tag</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注意：本脚本只针对服务，此代码仅供参考(ec2,ebs,cdn,eip,lambda,sqs,pinpoint,redshift,secretsmanager,ses,ga,s3,glue,dynamodb,elasticache,rds,vpc,elb,kinesis,firehose)</span><br><span class="line">本人是一名小菜鸡，写这个脚本的时候，遇到了很多问题。</span><br><span class="line">其中最大的问题是：数据格式，以及简单的逻辑判断。还有各种逻辑的更改。</span><br><span class="line">我发现自己使用class也只是单纯的用出了函数的效果。</span><br><span class="line">以及使用了单线程/多线程/多进程所遇到的问题</span><br><span class="line">若进程的写法有更好的方式，还请自行修改</span><br></pre></td></tr></table></figure>
+        <h1 id="给所有资源打上指定的Tag"><a href="#给所有资源打上指定的Tag" class="headerlink" title="给所有资源打上指定的Tag"></a>给所有资源打上指定的Tag</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">注意：本脚本只针对服务，此代码仅供参考(ec2,ebs,cdn,eip,lambda,sqs,pinpoint,redshift,secretsmanager,ses,ga,s3,glue,dynamodb,elasticache,rds,vpc,elb,kinesis,firehose)</span><br><span class="line">本人是一名小菜鸡，写这个脚本的时候，遇到了很多问题。</span><br><span class="line">其中最大的问题是：数据格式，以及简单的逻辑判断。还有各种逻辑的更改。</span><br><span class="line">我发现自己使用class也只是单纯的用出了函数的效果。</span><br><span class="line">以及使用了单线程/多线程/多进程所遇到的问题</span><br><span class="line">若进程的写法有更好的方式，还请自行修改</span><br></pre></td></tr></table></figure>
 
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">废话不多说。首先鄙人从B站中的教学视频中学到了编程的核心</span><br><span class="line">思路如下：</span><br><span class="line">	1. 需求是什么</span><br><span class="line">	2. 实现的方式</span><br><span class="line">	本次脚本的思路：</span><br><span class="line">		1.需求：需要对没有标签的资源进行打Tag操作，并且是针对所有的Region</span><br><span class="line">		2.细节：如果遇到有tag的资源该如何操作？我们需要判断指定的标签是否在Tags里。如果在则合规，相反就进行Tag</span><br><span class="line">		3.进行Tag：是否需要调用每个服务的API？我们最好统一接口，使用AWS的ResourceGroupTaggingApi</span><br><span class="line">		4.效率：如果只考虑一个线程，那么时间最少都要230多秒</span><br><span class="line">		5.Tag接口所需要的信息是资源的ARN。所以有些资源需要我们自行拼接</span><br></pre></td></tr></table></figure>
 
@@ -251,7 +248,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/CDN/" style="font-size: 20px;" class="tags-cloud-10">CDN</a> <a href="/tags/SSM/" style="font-size: 10px;" class="tags-cloud-0">SSM</a> <a href="/tags/Tag/" style="font-size: 10px;" class="tags-cloud-0">Tag</a> <a href="/tags/VPN/" style="font-size: 10px;" class="tags-cloud-0">VPN</a> <a href="/tags/s3/" style="font-size: 10px;" class="tags-cloud-0">s3</a>
+      <a href="/tags/CDN/" style="font-size: 20px;" class="tags-cloud-10">CDN</a> <a href="/tags/SSM/" style="font-size: 10px;" class="tags-cloud-0">SSM</a> <a href="/tags/Tag/" style="font-size: 15px;" class="tags-cloud-5">Tag</a> <a href="/tags/VPN/" style="font-size: 10px;" class="tags-cloud-0">VPN</a> <a href="/tags/s3/" style="font-size: 10px;" class="tags-cloud-0">s3</a>
     </div>
   </div>
 </section>
