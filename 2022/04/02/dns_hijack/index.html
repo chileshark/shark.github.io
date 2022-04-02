@@ -22,7 +22,7 @@
 
   
 
-  <title>S3 allow source | Small Shark</title>
+  <title>DNS Hijack | Small Shark</title>
 
   
 
@@ -45,7 +45,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(/images/images/s3/s3.jpg)"></div>
+    <div class="post-image" style="background-image: url(https://img-blog.csdnimg.cn/74fd063d2af2497193d3ee0020c7ea3a.png)"></div>
   
 
   <!-- navbar -->
@@ -94,18 +94,18 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">S3 allow source</h1>
+          <h1 class="title-wrap">DNS Hijack</h1>
           <h2 class="title-sub-wrap">
             <strong>有梦想的鲨鱼</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2021-12-29T10:01:14.320Z" itemprop="datePublished">2021-12-29</time>
+            <time  class="article-date" datetime="2022-04-02T05:41:00.865Z" itemprop="datePublished">2022-04-02</time>
           </h2>
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/s3/">🏷️ s3</a></li>
+    <li><a href="/tags/Route53/">🏷️ Route53</a></li>
   
 </ul>
         </div>
@@ -129,18 +129,119 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="S3允许来源访问"><a href="#S3允许来源访问" class="headerlink" title="S3允许来源访问"></a>S3允许来源访问</h1><p>如果将限制终端节点的策略和限制公有ip的策略写在一起，并且这个公有ip是属于这个vpc内的，那么就会出现一个二者都不可以访问的现象，如果需要的话，只能允许指定的公有ip来进行访问，而不要加入限制终端节点的操作</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果只希望连接了终端节点的实例访问和外部主机访问，那么您就可以使用以下策略</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;VPCe&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:ListBucket&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">  <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">  <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;StringNotEquals&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;aws:SourceVpce&quot;</span>: <span class="string">&quot;endpoint&quot;</span></span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果想让连接了终端节点的实例访问s3并且不属于这个vpc的外部主机也可以访问，可以使用以下策略</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">    				&#125;,</span><br><span class="line">  	<span class="attr">&quot;StringNotEquals&quot;</span>: &#123;</span><br><span class="line">  	<span class="attr">&quot;aws:SourceVpce&quot;</span>: <span class="string">&quot;endpoint&quot;</span></span><br><span class="line">  			&#125;</span><br><span class="line">  		&#125;</span><br><span class="line">  	&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如果只想让连接了终端节点的实例访问，那么就只能指定公有ip</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;Version&quot;</span>: <span class="string">&quot;2012-10-17&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;Statement&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">&quot;Sid&quot;</span>: <span class="string">&quot;SourceIP&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Effect&quot;</span>: <span class="string">&quot;Deny&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Principal&quot;</span>: <span class="string">&quot;*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Action&quot;</span>: <span class="string">&quot;s3:*&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;Resource&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;arn:aws:s3:::xxxx/*&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;Condition&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;NotIpAddress&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;aws:SourceIp&quot;</span>: <span class="string">&quot;xxx.xxx.xxx.xxx/32&quot;</span></span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="通过本地DNS劫持来测试dns迁移是否生效"><a href="#通过本地DNS劫持来测试dns迁移是否生效" class="headerlink" title="通过本地DNS劫持来测试dns迁移是否生效"></a>通过本地DNS劫持来测试dns迁移是否生效</h1><p>大致图片，上图！<br><img src="https://img-blog.csdnimg.cn/acc84d9d302246e783a38984e7b2afe4.png"></p>
+<h2 id="AWS端配置"><a href="#AWS端配置" class="headerlink" title="AWS端配置"></a>AWS端配置</h2><pre><code>1.在AWS Route53上创建一个公有托管域名，此域名要和生产域名一致
+    比如我的生产域名是 shayuyoumengxiang.com,那么我在AWS Route53上也要创建一个名为shayuyoumengxiang.com的公有托管区域
+2.在AWS Route53上添加相应的解析记录(与生产环境一致)
+3.解析AWS 权威服务器的地址 nslookup xxx.xxx.xxx
+    205.251.199.58
+    205.251.195.138
+    205.251.197.149
+    205.251.192.68
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/e1b2974b0f9f4922a86652f1f647d60d.png"></p>
+<p>再看我的机器<br><img src="https://img-blog.csdnimg.cn/a58f9d866aee44b2b77f505481777184.png"></p>
+<h2 id="DNSMASQ的配置"><a href="#DNSMASQ的配置" class="headerlink" title="DNSMASQ的配置"></a>DNSMASQ的配置</h2><pre><code>dnsmasq简介，此处参照百度
+    DNSmasq是一个小巧且方便地用于配置DNS和DHCP的工具，适用于小型网络，它提供了DNS功能和可选择的DHCP功能。它服务那些只在本地适用的域名，这些域名是不会在全球的DNS服务器中出现的。DHCP服务器和DNS服务器结合，并且允许DHCP分配的地址能在DNS中正常解析，而这些DHCP分配的地址和相关命令可以配置到每台主机中，也可以配置到一台核心设备中（比如路由器），DNSmasq支持静态和动态两种DHCP配置方式。
+    此处将此工具当作DNS劫持工具
+1. 首先安装 dnsmasq这个工具
+    yum -y install dnsmasq / apt-get -y install dnsmasq
+    systemctl enable dnsmasq
+2. 配置此工具
+    用到的参数有：
+        server=/dashayu.xyz/205.251.199.58  将所有*.dashayu.xyz的查询全部指定到AWS Route53的权威服务器
+        server=/dashayu.xyz/205.251.195.138
+        server=/dashayu.xyz/205.251.197.149
+        server=/dashayu.xyz/205.251.192.68
+        server=/#/10.0.0.2                  这里的#代表其他的查询，全部通过10.0.0.2(因为我用的是AWS机器，所以这个是我VPC的DNS服务器。其他人可以设置成8.8.8.8或者运营商的DNS)dns出去
+        resolv-file=/root/resolv.dnsmasq.conf   读取我的上游解析文件
+        all-servers                             全部服务器
+        local-service                   
+        listen-address=10.0.1.95                监听地址，本机地址
+3.禁用本地的/etc/resolve文件
+    很多人也许会疑惑为什么我要将这里的nameserver注释掉。
+    原因很简单，nslookup是用来查询DNS记录的，他是一个程序的名字，他只会来找这个配置文件。当我注释掉，并且在dnsmasq指定了解析文件的路径，那么nslookup就会去找我指定的配置文件，从而达到将所有*.dashayu.xyz的查询全部指定到AWS Route53的权威服务器的目的
+    [root@ip-10-0-1-95 ~]# cat /etc/resolv.conf
+                        options timeout:2 attempts:5
+                        ; generated by /usr/sbin/dhclient-script
+                        #search ap-southeast-1.compute.internal
+                        #nameserver 10.0.0.2
+4.配置文件的路径
+    cp /etc/resolv.conf ~/resolv.dnsmasq.conf   # 复制一份配置文件到根路径下，也不一定是根路径，也可以是其他路径
+    切记，唯独不能复制到/etc/dnsmasq.d/这个路径下，不然你会喜提报错
+    dnsmasq:bbad option at line 1.....
+5.启动dnsmasq
+    systemctl start dnsmasq
+到此dnsmasq配置完成
+</code></pre>
+<p>很多人会以为，这就完事了….<br>作者我只能用以下图片表示(此处手动狗头)<br><img src="https://img-blog.csdnimg.cn/812c77741f3045f8bbd2dae2a384838a.png"><br>进入我们的测试环节</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>1.测试我们的A记录<br>    [root@ip-10-0-1-95 ~]# nslookup test.dashayu.xyz<br>                    Server:         127.0.0.1<br>                    Address:        127.0.0.1#53</p>
+<pre><code>                Name:   test.dashayu.xyz
+                Address: 18.140.56.195
+                
+root@ip-10-0-1-95 ~]# curl test.dashayu.xyz
+                &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;
+        
+                &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;
+我们此时可以发现，我访问是OK的
+2.测试我们的CNAME记录
+    [root@ip-10-0-1-95 ~]# nslookup chile.dashayu.xyz
+                        Server:         127.0.0.1
+                        Address:        127.0.0.1#53chile.dashayu.xyz       canonical name = dwf0uc5pdqrlt.cloudfront.net.
+    [root@ip-10-0-1-95 ~]# curl chile.dashayu.xyz
+                        curl: (6) Could not resolve host: chile.dashayu.xyz
+</code></pre>
+<p>这里我们发现。我能解析出来，为什么我访问不了呢？<br><img src="https://img-blog.csdnimg.cn/604a7f35603c4e0b942fa3b55b5c80ef.png"><br>答案很简单，因为权威名称服务器通常不做递归查询，它只会返回一个记录值给你(你记录的是什么记录，就会返回什么结果)，而我们的浏览器其实是通过IP去访问的。你给我一个CNAME值，俺也不知道在哪啊。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><pre><code>1.那我们既然知道了权威服务器不做递归查询，我们要怎么办呢？
+    答案也很简单。我们可以想象一下DNS查询的流程(结合文章开头的图片,虽然不太准确)
+        正常流程(大致)client ---&gt; Local DNS(也就是运营商) ----&gt; Other DNS Server
+        那我们现在的流程client(dnsmasq) ---&gt; 权威服务器
+        client到localdns是一个递归查询，而我们的localdns到其他dns是一个迭代的查询，localdns会负责将一个域名的a记录查找出来，返回给客户端
+2.缺少什么？
+    我们有权威DNS，递归DNS，转发DNS，以及公共DNS
+    再看看我们的流程图，通过上一条我的可以发现，client到权威dns的中间似乎少了什么？少了啥？
+    很明确。我们少了一个可以递归查询的DNS
+        这里笔者采用的是转发DNS，何为转发DNS？
+            转发DNS是一种特殊的递归。如果本地的缓存记录中没有相应域名结果时，其将查询请求转发给另外一台DNS服务器，由另外一台DNS服务器来完成查询请求。
+3.如何配置？
+    3.1 我们先安装一个dns服务
+        yum -y install bind
+    3.2 如何配置？
+        options &#123;
+            listen-on port 53 &#123; any; &#125;;
+            listen-on-v6 port 53 &#123; any; &#125;;
+            directory       &quot;/var/named&quot;;
+            dump-file       &quot;/var/named/data/cache_dump.db&quot;;
+            statistics-file &quot;/var/named/data/named_stats.txt&quot;;
+            memstatistics-file &quot;/var/named/data/named_mem_stats.txt&quot;;
+            recursing-file  &quot;/var/named/data/named.recursing&quot;;
+            secroots-file   &quot;/var/named/data/named.secroots&quot;;
+            allow-query     &#123; any; &#125;;       // 所有查询
+            forwarders      &#123; 10.0.1.95; &#125;; // 这里是dnsmasq的地址,这里会将查询转发到我们的dnsmasq服务器上
+            /*
+             - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
+             - If you are building a RECURSIVE (caching) DNS server, you need to enable
+               recursion.
+             - If your recursive DNS server has a public IP address, you MUST enable access
+               control to limit queries to your legitimate users. Failing to do so will
+               cause your server to become part of large scale DNS amplification
+               attacks. Implementing BCP38 within your network would greatly
+               reduce such attack surface
+            */
+            recursion yes;
+    
+            dnssec-enable no;
+            dnssec-validation no;
+    3.3 启动dns服务
+        systemctl enable named;systemctl start named;
+</code></pre>
+<h2 id="再次测试"><a href="#再次测试" class="headerlink" title="再次测试"></a>再次测试</h2><p>这里笔者使用本地计算机来测试。别问，问就是AWS机器太贵了。<br>修改配置resolv.conf这个文件<br><img src="https://img-blog.csdnimg.cn/adb93d53eb6642499fcc83d9fcfe3620.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWFFFUg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>接下来就是<br><img src="https://img-blog.csdnimg.cn/94f1c9c4dd8b437f87888bd48692e74a.png" alt="上菜！"></p>
+<h3 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h3><p><img src="https://img-blog.csdnimg.cn/ca18e45635724899b515388aaa89a070.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWFFFUg==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<h4 id="网页测试"><a href="#网页测试" class="headerlink" title="网页测试"></a>网页测试</h4><p><img src="https://img-blog.csdnimg.cn/1024b87d007047928d2d600fc36e862f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWFFFUg==,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
+<p><img src="https://img-blog.csdnimg.cn/400c7f8e6d7c43afa35beede3c168a22.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWFFFUg==,size_20,color_FFFFFF,t_70,g_se,x_16"><br>这里我要澄清一下嗷。这个cloudfront(AWS CDN)是因为笔者设置了OAI的原因。实际上是能够访问的到</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><pre><code>笔者希望，这个文章能够帮助到大家。
+我会不定期更新一些非常有趣的东西。谢谢
+</code></pre>
 
       </section>
 
@@ -148,32 +249,14 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-      <div class="card-cover" background-image-lazy data-img="/images/images/cdn/cdn_redirect.jpg"></div>
-    
-    <div class="card-text">
-      
-        <a href="/2021/12/29/cdn_redirect/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">CDN Redirect</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
-      <div class="card-cover" background-image-lazy data-img="/images/images/ec2/ebs.jpg"></div>
-    
     <div class="card-text">
       
-        <a href="/2021/12/29/ebs_eip_tag/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Auto_create_ebs_eip_tag</h2>
+        <a href="/2022/03/02/Java/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">(no title)</h2>
         </a>
       
       <div class="card-text--row">Older</div>
